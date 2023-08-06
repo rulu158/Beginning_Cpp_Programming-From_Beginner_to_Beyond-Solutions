@@ -39,4 +39,6 @@ int main() {
 
 	cout << "Total estimate: $" << estimated_price << endl;
 	cout << "This estimate is valid for " << number_of_days << " days" << endl;
+
+	return 0;
 }
