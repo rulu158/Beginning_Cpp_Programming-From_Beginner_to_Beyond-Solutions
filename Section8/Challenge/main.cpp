@@ -1,5 +1,6 @@
 /*
  * This Challenge is made with euros:
+ * 2€
  * 1€
  * 0.50€
  * 0.20€
@@ -21,6 +22,10 @@ int main() {
 
 	int coins {};
 	int resting_cents {cents};
+
+	coins = resting_cents / 200;
+	resting_cents %= 200;
+	cout << "2€: " << coins << endl;
 
 	coins = resting_cents / 100;
 	resting_cents %= 100;
