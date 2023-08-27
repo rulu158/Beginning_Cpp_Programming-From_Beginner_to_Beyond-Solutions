@@ -209,7 +209,7 @@ Mystring operator*(const Mystring &lhs, int rhs) {
     }
     char *buff = new char[lhs.get_length() * rhs + 1];
     for (int i {0}; i < rhs; i++) {
-        if (rhs == 0) {
+        if (i == 0) {
             std::strcpy(buff, lhs.get_str());
         } else {
             std::strcat(buff, lhs.get_str());
