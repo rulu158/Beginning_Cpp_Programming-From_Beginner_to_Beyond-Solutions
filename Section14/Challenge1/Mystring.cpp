@@ -59,16 +59,16 @@ Mystring &Mystring::operator=(Mystring &&rhs) {
 Mystring &Mystring::operator+=(const Mystring &rhs) {
     Mystring temp {*this + rhs};
     delete [] str;
-    str = new char[std::strlen(temp.str) + 1];
-    std::strcpy(str, temp.str);
+    str = temp.str;
+    temp.str = nullptr;
     return *this;
 }
 
 Mystring &Mystring::operator*=(int rhs) {
-    Mystring temp {(*this) * rhs};
+    Mystring temp {*this * rhs};
     delete [] str;
-    str = new char[std::strlen(temp.str) + 1];
-    std::strcpy(str, temp.str);
+    str = temp.str;
+    temp.str = nullptr;
     return *this;
 }
 
@@ -97,8 +97,8 @@ Mystring Mystring::operator-() const {
 Mystring &Mystring::operator++() {
     Mystring temp {+(*this)};
     delete [] str;
-    str = new char[std::strlen(temp.str)];
-    std::strcpy(str, temp.str);
+    str = temp.str;
+    temp.str = nullptr;
     return *this;
 }
 
@@ -111,8 +111,8 @@ Mystring Mystring::operator++(int) {
 Mystring &Mystring::operator--() {
     Mystring temp {-(*this)};
     delete [] str;
-    str = new char[std::strlen(temp.str)];
-    std::strcpy(str, temp.str);
+    str = temp.str;
+    temp.str = nullptr;
     return *this;
 }
 
@@ -144,7 +144,7 @@ bool Mystring::operator<=(const Mystring &rhs) const {
     Mystring mystr_left {-(*this)};
     Mystring mystr_right {-(rhs)};
     int cmp {std::strcmp(mystr_left.str, mystr_right.str)};
-    if (cmp < 0 || cmp == 0) {
+    if (cmp <= 0) {
         return true;
     }
     return false;
@@ -164,7 +164,7 @@ bool Mystring::operator>=(const Mystring &rhs) const {
     Mystring mystr_left {-(*this)};
     Mystring mystr_right {-(rhs)};
     int cmp {std::strcmp(mystr_left.str, mystr_right.str)};
-    if (cmp == 0 || cmp > 0) {
+    if (cmp >= 0) {
         return true;
     }
     return false;
@@ -210,6 +210,7 @@ void Mystring::display() const {
 
 std::ostream &operator<<(std::ostream &os, const Mystring &obj) {
     os << obj.str;
+    return os;
 }
 
 std::istream &operator>>(std::istream &is, Mystring &obj) {
