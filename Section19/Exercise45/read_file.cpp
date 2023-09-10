@@ -14,6 +14,8 @@ void read_file(std::string file_name) {
    while (in_file >> word) {
        std::cout << word << std::endl;
    }
+
+   in_file.close();
    
     //---- YOU WRITE YOUR CODE ABOVE THIS LINE----
 }
